@@ -1,0 +1,26 @@
+[
+  { "nombre": "Nala", "caracteristicas": "", "imagen": "./assets/gato1.jpg" },
+  {
+    "nombre": "Isi",
+    "caracteristicas": "Soy ISI",
+    "imagen": "./assets/gato2.jpg"
+  },
+  { "nombre": "Rocco", "caracteristicas": "", "imagen": "./assets/perro1.png" },
+  {
+    "nombre": "Charlie",
+    "caracteristicas": "",
+    "imagen": "./assets/perro2.jpg"
+  },
+  { "nombre": "Luna", "caracteristicas": "", "imagen": "./assets/gato3.jpg" },
+  { "nombre": "Galgo", "caracteristicas": "", "imagen": "./assets/perro3.jpg" },
+  {
+    "nombre": "Negrito",
+    "caracteristicas": "",
+    "imagen": "./assets/perro4.jpg"
+  },
+  {
+    "nombre": "Indra",
+    "caracteristicas": "",
+    "imagen": "./assets/indra (3).jpg"
+  }
+]

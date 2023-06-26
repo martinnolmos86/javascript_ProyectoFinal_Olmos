@@ -1,0 +1,52 @@
+/* Resetear los estilos predeterminados */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos generales */
+body {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d3142;
+  color: #fff;
+  padding: 1rem;
+  height: 100px;
+}
+
+.logo img {
+  width: 50px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav a {
+  color: #f46036;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* TAMAÑO DE LAS IMAGENES DE LAS CARDS */
+
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
