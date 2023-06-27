@@ -1,7 +1,11 @@
-fetch("./data.json")
-  .then((res) => res.json())
-  .then((data) => animals(data));
+// FUNCION ASINCRONA
 
+const bring = async () => {
+  const response = await fetch("./data.json");
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
 // // CAPTURAMOS UN ELEMENTO
 
 const containerDogsAndCats = document.querySelector("#container");
@@ -10,29 +14,27 @@ const containerDogsAndCats = document.querySelector("#container");
 
 const carrito = [];
 
-// RECORRO EL ARRAY DE LOS ANIMALES Y LOS MUESTRO EN EL HTML
-const animals = (data) => {
-  dogsAndCats = data;
-  dogsAndCats.map((animal, index) => {
-    let card = document.createElement("div");
-    card.classList.add("card", "col-sm-12", "col-lg-3");
-    card.innerHTML = `
-  <img src="${animal.imagen}" class="card-img-top" alt="...">
-  <div class="card-body">
-  <h5 class="card-title">${animal.nombre}</h5>
-  <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y
-  componer la mayor parte del contenido de la tarjeta.</p>
-  <button type="button" class="btn btn-dark btnAnimals" onClick="adoptar(${index})">Adoptar</button>
-  </div>
-  `;
-    containerDogsAndCats.appendChild(card);
+const animals = () => {
+  bring().then((response) => {
+    let animal = response;
+    animal.map((animal, index) => {
+      let card = document.createElement("div");
+      card.classList.add("card", "col-sm-12", "col-lg-3");
+      card.innerHTML = `
+        <img src="${animal.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${animal.nombre}</h5>
+          <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+          <button type="button" class="btn btn-dark btnAnimals" onClick="adoptar(${index})">Adoptar</button>
+        </div>
+      `;
+      containerDogsAndCats.appendChild(card);
+    });
   });
 };
 
-// FUNCION PARA MOSTRAR EL ANIMAL QUE SE SELECCIONO
-
 function adoptar(index) {
-  let selectionAnimal = dogsAndCats[index];
+  let selectionAnimal = carrito[index];
   carrito.push(selectionAnimal);
   Swal.fire({
     title: "¡Adopción exitosa!",
@@ -43,7 +45,6 @@ function adoptar(index) {
     imageAlt: "Custom image",
   });
 }
-
 // === SEGUNDA FUNCIONALIDAD ===
 
 // CAPTURO LA ETIQUETA FORM PARA CREAR EL FORMULARIO DE DONACIONES
