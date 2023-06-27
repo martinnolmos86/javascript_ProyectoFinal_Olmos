@@ -3,7 +3,6 @@
 const bring = async () => {
   const response = await fetch("./data.json");
   const data = await response.json();
-  console.log(data);
   return data;
 };
 // // CAPTURAMOS UN ELEMENTO
@@ -23,28 +22,32 @@ const animals = () => {
       card.innerHTML = `
         <img src="${animal.imagen}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">${animal.nombre}</h5>
-          <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
+        <h5 class="card-title">${animal.nombre}</h5>
+        <p class="card-text">Un texto de ejemplo rápido para colocal cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.</p>
           <button type="button" class="btn btn-dark btnAnimals" onClick="adoptar(${index})">Adoptar</button>
-        </div>
-      `;
+          </div>
+          `;
       containerDogsAndCats.appendChild(card);
     });
   });
 };
 
+animals();
+
 function adoptar(index) {
-  let selectionAnimal = carrito[index];
-  carrito.push(selectionAnimal);
-  Swal.fire({
-    title: "¡Adopción exitosa!",
-    text: `Gracias por adoptar a ${selectionAnimal.nombre}! `,
-    imageUrl: `${selectionAnimal.imagen}`,
-    imageWidth: 400,
-    imageHeight: 200,
-    imageAlt: "Custom image",
+  bring().then((response) => {
+    let animal = response[index];
+    Swal.fire({
+      title: "¡Adopción exitosa!",
+      text: `Gracias por adoptar a ${animal.nombre}!`,
+      imageUrl: `${animal.imagen}`,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+    });
   });
 }
+
 // === SEGUNDA FUNCIONALIDAD ===
 
 // CAPTURO LA ETIQUETA FORM PARA CREAR EL FORMULARIO DE DONACIONES
