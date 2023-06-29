@@ -32,19 +32,40 @@ const animals = () => {
   });
 };
 
+// LLAMADO A LA FUNCION ANIMALS
+
 animals();
 
+// FUNCION DEL BOTON ADOPTAR QUE ES LLAMADA POR LA FUNCION animals()
+
 function adoptar(index) {
-  bring().then((response) => {
+  bring().then(async (response) => {
     let animal = response[index];
-    Swal.fire({
-      title: "¡Adopción exitosa!",
-      text: `Gracias por adoptar a ${animal.nombre}!`,
+    const { value: email } = await Swal.fire({
+      title: "Ingresar dirección de correo electrónico",
+      text: `Estás adoptando a ${animal.nombre}. Tu solicitud quedará en cola para su revisión.`,
       imageUrl: `${animal.imagen}`,
       imageWidth: 400,
       imageHeight: 200,
-      imageAlt: "Custom image",
+      input: "email",
+      inputLabel: "Ingresa tu dirección de correo electrónico",
+      inputPlaceholder: "Ingresa tu dirección de correo electrónico",
+      confirmButtonText: "Enviar solicitud",
+      cancelButtonText: "Cancelar",
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (email) => {
+        return email;
+      },
     });
+
+    if (email) {
+      Swal.fire({
+        title: "¡Solicitud enviada!",
+        text: `Gracias por tu interés en adoptar a ${animal.nombre}! Tu solicitud ha sido enviada y quedará en cola para su revisión. Pronto nos comunicaremos contigo a la dirección de correo ingresada (${email}).`,
+        icon: "success",
+      });
+    }
   });
 }
 
